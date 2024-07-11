@@ -19,13 +19,6 @@ public class Main {
 
         System.out.println(user.getUsername());
 
-        /*
-            Registration Steps:
-                - user needs to prompt they want to make an acc
-                - user needs to provide a username and password
-                - system needs to check the username and password conform to sw req
-                - inform the user of results
-         */
 
         try(Scanner scanner = new Scanner(System.in)) {
             UserDao userDao = new SqliteUserDao();
@@ -41,14 +34,22 @@ public class Main {
                 if(controlMap.containsKey("User")) {
                     System.out.printf("Banking stuff for %s can happen here! press any key to continue", controlMap.get("User"));
                     scanner.nextLine();
-                    /*
-                        NOTE: currently the user information has no means of being removed: when you implement a logout
-                        functionality, the controlMap needs to have the User key/value pair removed - controlMap.remove("User");
-                     */
+                    userController.promptUserForAccountService(controlMap);
+
                 }
+
             }
 
         }
 
     }
 }
+
+/*
+    TODO: Could grab all checking account info when logging in, or wait until user specifies actions.
+          Will need to constantly update the in-memory Map and Database version
+          of checking accounts whenever adding/closing/etc
+
+
+
+ */

@@ -23,7 +23,7 @@ public class UserController {
         System.out.println("What would you like to do?");
         System.out.println("1. Register an account");
         System.out.println("2. Login");
-        System.out.println("q. quit");
+        System.out.println("q. Quit");
         try {
             String userActionIndicated = scanner.nextLine();
             switch (userActionIndicated) {
@@ -36,12 +36,39 @@ public class UserController {
                 case "q":
                     System.out.println("Goodbye!");
                     controlMap.put("Continue Loop", "false");
-                    controlMap.remove("User");
             }
         } catch(LoginFail exc) {
             System.out.println(exc.getMessage());
         }
 
+    }
+
+    public void promptUserForAccountService(Map<String, String> controlMap){
+        System.out.println("What would you like to do?");
+        System.out.println("1. View accounts"); //specify account after and see if you want to increase/decrease funds
+        System.out.println("2. View total sum"); //pull all accounts
+        System.out.println("3. Open new Checking Account"); //going to need to pull the latest one into the map
+        System.out.println("4. Close a Checking Account"); //pop from map in memory
+        System.out.println("5. Logout"); //remove user and accounts
+
+        String userActionIndicated = scanner.nextLine();
+        switch (userActionIndicated) {
+            case "1":
+                System.out.println("Not implemented yet!!");
+                break;
+            case "2":
+                System.out.println("Not implemented yet!!");
+                break;
+            case "3":
+                System.out.println("Not implemented yet!!");
+                break;
+            case "4":
+                System.out.println("Not implemented yet!!");
+                break;
+            case "5":
+                System.out.println("Goodbye!");
+                controlMap.remove("User");
+        }
     }
 
 //    public void returnResultOfRegistrationAttempt(User user) {

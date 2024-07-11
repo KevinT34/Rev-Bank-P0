@@ -1,6 +1,8 @@
 package com.revature.entity;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 /*
@@ -15,9 +17,16 @@ import java.util.Objects;
 
 public class User implements Serializable {
 
+
+
+    private int userId;
+
     private String username;
 
     private String password;
+
+    //when adding accounts, pull-up map.size() and ++ for account name
+    private Map<Integer, Checking> accounts = new HashMap<>();
 
     public User(){}
 
@@ -40,6 +49,14 @@ public class User implements Serializable {
 
     public String getPassword() {
         return password;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override

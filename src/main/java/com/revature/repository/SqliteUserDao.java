@@ -16,7 +16,7 @@ public class SqliteUserDao implements UserDao {
         //need sql statement
         //need a connection object
         //need to return newly generated user
-        String sql = "INSERT INTO user VALUES (?, ?)";
+        String sql = "INSERT INTO user(username, password) VALUES (?, ?)";
         try (Connection connection = DatabaseConnector.createConnection()){
             //User PreparedStatement to control how the user date is injected into our query.
             //PS helps to format the data to help protect against SQL injection attacks.
@@ -24,11 +24,20 @@ public class SqliteUserDao implements UserDao {
             //Indexing starts at 1 for Java SQL resources
             preparedStatement.setString(1, newUserCredentials.getUsername());
             preparedStatement.setString(2, newUserCredentials.getPassword());
-            int result = preparedStatement.executeUpdate();
-            //check if update was successful
-            if (result == 1) {
-                return newUserCredentials;
+
+            preparedStatement.executeUpdate();
+            ResultSet pkResultSet = preparedStatement.getGeneratedKeys();
+
+            //Grab the auto-incremented ID from sql
+            if (pkResultSet.next()) {
+                int generatedUserId = pkResultSet.getInt(1);
+                User newUser = new User();
+                newUser.setUserId(generatedUserId);
+                newUser.setUsername(newUserCredentials.getUsername());
+                newUser.setPassword(newUserCredentials.getPassword());
+                return newUser;
             }
+
             //if user not created, throw exception to handle the problem elsewhere
             throw new UserSQLException("User could not be created: please try again");
         } catch (SQLException e) {
@@ -48,9 +57,10 @@ public class SqliteUserDao implements UserDao {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             List<User> users = new ArrayList<>();
-            //use if if just 1 record expected
+            //use if, if just 1 record expected
             while(resultSet.next()) {
                 User userRecord = new User();
+                userRecord.setUserId(resultSet.getInt("user_id"));
                 userRecord.setUsername(resultSet.getString("username"));
                 userRecord.setPassword(resultSet.getString("password"));
                 users.add(userRecord);
@@ -64,4 +74,5 @@ public class SqliteUserDao implements UserDao {
         }
 
     }
+
 }
