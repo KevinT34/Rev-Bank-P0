@@ -5,13 +5,15 @@ import java.util.Objects;
 public class Checking {
 
     int number;
-    double totalSum;
+    double sum;
+    int userId;
 
     public Checking(){}
 
-    public Checking(int num, double totalSum) {
+    public Checking(int num, double sum, int userId) {
         this.number = num;
-        this.totalSum = totalSum;
+        this.sum = sum;
+        this.userId = userId;
     }
 
     public int getNumber() {
@@ -22,12 +24,20 @@ public class Checking {
         this.number = number;
     }
 
-    public double getTotalSum() {
-        return totalSum;
+    public double getSum() {
+        return sum;
     }
 
-    public void setTotalSum(double totalSum) {
-        this.totalSum = totalSum;
+    public void setSum(double sum) {
+        this.sum = sum;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -35,19 +45,19 @@ public class Checking {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Checking checking = (Checking) o;
-        return number == checking.number && Double.compare(totalSum, checking.totalSum) == 0;
+        return number == checking.number && Double.compare(sum, checking.sum) == 0;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(number, totalSum);
+        return Objects.hash(number, sum);
     }
 
     @Override
     public String toString() {
         return "Checking{" +
                 "number=" + number +
-                ", totalSum=" + totalSum +
+                ", totalSum=" + sum +
                 '}';
     }
 }

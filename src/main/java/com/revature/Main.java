@@ -48,7 +48,9 @@ public class Main {
 /*
     TODO: Could grab all checking account info when logging in, or wait until user specifies actions.
           Will need to constantly update the in-memory Map and Database version
-          of checking accounts whenever adding/closing/etc
+          of checking accounts whenever adding/closing/etc. Could grab all accounts when accessing
+
+    TODO: Could make a Checking Controller
 
 
 
