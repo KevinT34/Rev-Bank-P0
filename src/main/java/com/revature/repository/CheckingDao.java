@@ -6,7 +6,13 @@ import java.util.Map;
 
 public interface CheckingDao {
 
-    Checking createChecking(int userId, Checking newCheckingAccount);
+    Checking createChecking(Checking newCheckingAccount);
 
     Map<Integer, Checking> getAllAccounts(int userId);
+
+    void deleteAccountByAccountId(int accountId, int userId);
+
+    void modifyAccount(int accountId, double deposit, int userId);
+
+    Checking getAccountByAccountId(int accountId, int userId);
 }

@@ -8,7 +8,13 @@ public class Checking {
     double sum;
     int userId;
 
-    public Checking(){}
+    public Checking(){
+    }
+
+    public Checking(double sum, int userId) {
+        this.sum = sum;
+        this.userId = userId;
+    }
 
     public Checking(int num, double sum, int userId) {
         this.number = num;
@@ -56,8 +62,8 @@ public class Checking {
     @Override
     public String toString() {
         return "Checking{" +
-                "number=" + number +
-                ", totalSum=" + sum +
+                "Account Number: " + number +
+                ", Balance: " + sum +
                 '}';
     }
 }

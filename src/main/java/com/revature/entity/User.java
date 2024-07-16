@@ -59,25 +59,42 @@ public class User implements Serializable {
         this.userId = userId;
     }
 
+    public Map<Integer, Checking> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Map<Integer, Checking> accounts) {
+        this.accounts = accounts;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(username, user.username) && Objects.equals(password, user.password);
+        return userId == user.userId && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(accounts, user.accounts);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(username, password);
+        return Objects.hash(userId, username, password, accounts);
     }
+
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "username='" + username + '\'' +
+//                ", password='" + password + '\'' +
+//                ", number of accounts='" + accounts.size() + '\'' +
+//                '}';
+//    }
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "{User: " + username +
+                ", Password: " + password +
+                ", Number of Accounts: " + accounts.size() + "}";
+
     }
 
 }
