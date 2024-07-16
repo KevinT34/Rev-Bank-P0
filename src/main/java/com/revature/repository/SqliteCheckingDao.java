@@ -1,12 +1,10 @@
 package com.revature.repository;
 
 import com.revature.entity.Checking;
-import com.revature.entity.User;
 import com.revature.exception.CheckingAccountSQLException;
 import com.revature.exception.UserSQLException;
 import com.revature.utility.DatabaseConnector;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -65,11 +63,6 @@ public class SqliteCheckingDao implements CheckingDao{
             throw new UserSQLException(e.getMessage());
         }
 
-    }
-
-    @Override
-    public Checking getAccountByAccountId(int accountId, int userId) {
-        return null;
     }
 
     @Override

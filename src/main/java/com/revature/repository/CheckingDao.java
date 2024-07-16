@@ -13,6 +13,4 @@ public interface CheckingDao {
     void deleteAccountByAccountId(int accountId, int userId);
 
     void modifyAccount(int accountId, double deposit, int userId);
-
-    Checking getAccountByAccountId(int accountId, int userId);
 }
