@@ -3,6 +3,7 @@ package com.revature.service;
 import com.revature.entity.Checking;
 import com.revature.entity.User;
 import com.revature.exception.LoginFail;
+import com.revature.exception.RegistrationError;
 import com.revature.repository.CheckingDao;
 import com.revature.repository.UserDao;
 
@@ -20,7 +21,7 @@ public class UserService {
     }
 
     //entrypoint into UserService registration functionality
-    public User validateNewCredentials(User newUserCredentials){
+    public User validateNewCredentials(User newUserCredentials) throws RegistrationError{
         //1. Check if lengths are correct
         if(checkUsernamePasswordLength(newUserCredentials)) {
             //2. Check if username is unique
@@ -30,7 +31,7 @@ public class UserService {
             }
         }
         //4. Inform user of results
-        throw new RuntimeException("placeholder for custom exception");
+        throw new RegistrationError("Invalid Username or Password");
     }
 
     public User checkLoginCredentials(User credentials) {

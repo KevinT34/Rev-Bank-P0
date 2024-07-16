@@ -3,6 +3,7 @@ package com.revature.controller;
 import com.revature.entity.Checking;
 import com.revature.entity.User;
 import com.revature.exception.LoginFail;
+import com.revature.exception.RegistrationError;
 import com.revature.service.UserService;
 
 import java.util.Map;
@@ -40,7 +41,7 @@ public class UserController {
                     System.out.println("Goodbye!");
                     return false;
             }
-        } catch(LoginFail exc) {
+        } catch(LoginFail | RegistrationError exc) {
             System.out.println(exc.getMessage());
         }
         return true;
@@ -84,7 +85,7 @@ public class UserController {
 //        System.out.printf("New account creation: %s", user);
 //    }
 
-    public void registerNewUser() {
+    public void registerNewUser() throws RegistrationError {
         User newCredentials = getUserCredentials();
         User newUser = userService.validateNewCredentials(newCredentials);
         System.out.printf("New account creation: %s", newUser);
